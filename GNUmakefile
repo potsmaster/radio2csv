@@ -1,3 +1,7 @@
+# if Makefile present, use it instead
+ifneq (,$(realpath Makefile))
+include Makefile
+else
 # This makefile uses GNU "make" & GCC (both free) on both Windows & Linux.
 # To "make" from Windows:  gmake -C \\SMB-1\Usr\dev\cpp\radio
 
@@ -25,4 +29,5 @@ ifeq	"$(OS)" "Windows_NT"
 	$(CL)	-m64 $(CFLAGS) Radio.cpp I*.cpp Th*.cpp $(LFLAGS)Radio2csv-x64
 else
 	@$(RM)	*.obj
+endif
 endif
